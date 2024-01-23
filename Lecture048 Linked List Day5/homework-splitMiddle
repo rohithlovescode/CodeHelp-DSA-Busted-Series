@@ -1,0 +1,29 @@
+pair<Node*,Node*> splitMiddle(Node* head) {
+	//the first if statement basically should not be in the test cases, but writing it to avoid err's
+	if (head == NULL || head->next == NULL) {
+		return make_pair(head,nullptr);
+		
+	}
+	int size = 1;
+	Node* temp = head,*head2;
+	while (temp->next != head) {
+		temp = temp->next;
+		size++;
+	}
+	//finding out the size
+	temp = head;
+	for (int i = 1;i < size / 2;i++) {
+		temp = temp->next;
+	}
+	head2 = temp->next;
+	//here temp is the last element in first circular linked list
+	temp->next = head;
+	temp = head2;
+	while (temp->next != head) {
+		// iterating to get the last element for LL 2
+		temp = temp->next;
+	}
+	temp->next = head2;
+	return make_pair(head, head2);
+	//head1 is head and head2 is obviously head2
+}
